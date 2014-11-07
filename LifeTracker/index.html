@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Magic Life Tracker</title>
+    <link href="styles/reset.css" rel="stylesheet" />
+    <link href="styles/style.css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        <header>
+            <img class="logo" src="images/MLTlogo.png" alt="logo" />
+            <h1>Magic Life Tracker</h1>
+            <h4>Track Your Life Total For Any Game!</h4>
+        </header>
+        <div class="games">
+            <ul data-bind="foreach: games">
+                <li data-bind="click: $root.selectGame, css: { selectedGame: isSelected }">
+                    <span data-bind="text: name"></span>
+                </li>
+            </ul>
+
+            <button data-bind="click: addPlayer">Add Player</button>
+        </div>
+
+    </nav>
+    <article>
+        <div data-bind="foreach: players">
+            <section class="player">
+                <input data-bind="value: name" />
+                <h1 data-bind="text: life"></h1>
+
+                <ul data-bind="foreach: $root.selectedGame().increments">
+                    <li class="increment">
+                        <button data-bind="text: name, click: $parent.changeLife"></button>
+                    </li>
+                </ul>
+
+                <ul class="miniTrackers" data-bind="foreach: miniTrackers">
+                    <li class="miniTracker">
+                        <input data-bind="value: name" />
+                        <h3 data-bind="text: value"></h3>
+
+                        <ul data-bind="foreach: increments">
+                            <li class="increment">
+                                <button data-bind="text: name, click: $parent.changeValue"></button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+
+        <section class="ads">
+        </section>
+    </article>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/knockout.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
